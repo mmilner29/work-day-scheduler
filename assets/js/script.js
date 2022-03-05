@@ -1,10 +1,12 @@
+//Global Variables
+//Get current date & hour
 var currentDay = moment().format("dddd, MMMM Do YYYY");
 var currentHour = moment().hour();
 
-console.log(currentHour);
-
+//Appead current day to the page (element with current Day ID)
 $("#currentDay").append(currentDay);
 
+//Save text typed in for plan for specific hours in local storage)
 var save = function() {
     var plan = $(this).siblings(".description").val();
     var hour = $(this).siblings(".hour").attr("id");
@@ -12,6 +14,7 @@ var save = function() {
     localStorage.setItem(hour,plan);
 };
 
+//Get plans saved in local storage and append them to their respective input element
 $("div.time0 input").val(localStorage.getItem("time0"));
 $("div.time1 input").val(localStorage.getItem("time1"));
 $("div.time2 input").val(localStorage.getItem("time2"));
@@ -23,11 +26,13 @@ $("div.time7 input").val(localStorage.getItem("time7"));
 $("div.time8 input").val(localStorage.getItem("time8"));
 
 
-
+//Color code function
 var colorCode = function() {
+    //Array of times
     var timeBlock = {hour9: 9, hour10: 10, hour11: 11, hour12: 12, 
         hour13: 13, hour14: 14, hour15: 15, hour16: 16, hour17: 17}
 
+    //Add/Remove classes based on current hour
     if (currentHour === timeBlock.hour9) {
         $("div.time0 input").addClass("present");
         $("div.time0 input").removeClass("future");
@@ -130,4 +135,5 @@ var colorCode = function() {
 
 colorCode();
 
+//Event listener for the save button, runs save function
 $(".saveBtn").on("click", save);
