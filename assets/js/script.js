@@ -1,6 +1,5 @@
 var currentDay = moment().format("dddd, MMMM Do YYYY");
 var currentHour = moment().hour();
-var timeIndex = 0
 
 console.log(currentHour);
 
@@ -23,43 +22,17 @@ $("div.time6 input").val(localStorage.getItem("time6"));
 $("div.time7 input").val(localStorage.getItem("time7"));
 $("div.time8 input").val(localStorage.getItem("time8"));
 
-// timeBlocks = [
-//     {
-//         element: $("div.time0 input"),
-//         time: 9,
-//     },
-//     {
-//         element: $("div.time1 input"),
-//         time: 10,
-//     },
-//     {
-//         element: $("div.time2 input"),
-//         time: 11,
-//     },
-//     {
-//         element: $("div.time3 input"),
-//         time: 12,
-//     },
-// ]
 
-// var colorCode = function() {
-//     for (var i = 0; i < timeBlocks.length; i++) {
-//         if (currentHour === timeBlocks[timeIndex].time) {
-//             timeBlocks.element.addClass("present");
-//             timeBlocks.element.removeClass("future");
-//         } else if (currentHour > timeBlocks[timeIndex].time) {
-//             timeBlocks.element.addClass("past");
-//             timeBlocks.element.removeClass("present");
-//         } else if (currentHour < timeBlocks[timeIndex].time) {
-//             timeBlocks.element.addClass("future");
-//             timeBlocks.element.removeClass("past");
-//         }
+var colorCode = function() {
+    hour9 = 9;
+    if (currentHour === hour9) {
+        $("div.time0 input").addClass("present");
+    } else if (currentHour > hour9) {
+        $("div.time0 input").addClass("past");
+    } else if (currentHour < hour9) {
+        $("div.time0 input").addClass("future");
+    }
+};
 
-//     }
-//     timeIndex++;
-
-// };
-
-// colorCode(timeBlocks);
-
+colorCode();
 $(".saveBtn").on("click", save);
